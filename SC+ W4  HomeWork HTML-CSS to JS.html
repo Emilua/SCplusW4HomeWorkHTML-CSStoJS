@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>weather app</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+   <link rel="stylesheet" href="css/style.css">
+   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+   <div class="container">
+      <div class="weather-app">
+         <form action="#" class="search-form">
+            <div class="row">
+               <div class="col-7">
+                  <input type="search" placeholder="Type a city..." autofocus="on" class="form-control shadow-sm"
+                     id="inputSearch">
+               </div>
+               <div class="col-2">
+                  <input type="submit" value="search" class="form-control btn btn-primary shadow-sm">
+               </div>
+               <div class="col-3">
+                  <button class="form-control btn btn-primary shadow-sm" id="butn-position">Position</button>
+               </div>
+            </div>
+         </form>
+         <h1 id="current-city">Индустриальный район, Днепр</h1>
+         <ul>
+            <li id="data"></li>
+            <li id="description">Облачно</li>
+         </ul>
+         <div class="row">
+            <div class="col-6">
+               <div class="clearfix weather-temperature">
+                  <img src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" alt="cloudy"
+                     class="weather-icon float-left">
+                  <div class="float-left">
+                     <span class="temperature">19</span> <span class="units"> <a href="#" id="celsium-link"
+                           class="active">°c</a> | <a href="#" id="tempFahrenheit">°f</a></span>
+                  </div>
+               </div>
+            </div>
+            <div class="col-6">
+               <ul>
+                  <li>Влажность: <span id="humidity"></span>%</li>
+                  <li>Ветер: <span id="wind-speed"></span> км/ч</li>
+               </ul>
+               <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-primary">Left</button>
+                  <button type="button" class="btn btn-primary">Middle</button>
+                  <button type="button" class="btn btn-primary">Right</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <script src="js/script.js"></script>
+</body>
+
+</html>
