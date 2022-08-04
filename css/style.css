@@ -35,7 +35,7 @@ li {
 
 }
 
-.temperature {
+#temperature {
    font-size: 64px;
    font-weight: 400;
    line-height: 1;
@@ -53,6 +53,7 @@ li {
 .weather-temperature .active {
    color: rgb(33, 33, 33);
    cursor: default;
+   text-decoration: none;
 }
 
 .weather-temperature .active:hover {

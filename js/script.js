@@ -14,32 +14,31 @@ function formatDate(date) {
 
 function search(event) {
    event.preventDefault();
+   celsiumLink.classList.remove('active');
+   fahrenhitlink.classList.add('active');
+   let temperatureElement = document.querySelector('#temperature');
+   let temperature = Math.round((celsiusTemperature * 9) / 5 + 32);
+   temperatureElement.innerHTML = temperature;
+
+}
+function showCelsium(event) {
+   event.preventDefault();
+   celsiumLink.classList.add('active');
+   fahrenhitlink.classList.remove('active');
+   let temperature = document.querySelector('#temperature');
+   temperature.innerHTML = celsiusTemperature;
+}
+function search(event) {
+   event.preventDefault();
    let inputSearch = document.querySelector('#inputSearch');
 
    let city = inputSearch.value;
    let urlApi = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=metric`;
    axios.get(urlApi).then(showTemperature);
-
 }
-function tempConvert(event) {
-   event.preventDefault();
-   let temperatureElement = document.querySelector('.temperature');
-   celsiusTemperature.classlost.remove('active');
-   tempFahrenheit.classList.add('active');
-   let temperature = temperatureElement.innerHTML;
-   temperature = Number(temperature);
-   temperatureElement.innerHTML = Math.round((celsiusTemperature * 9) / 5 + 32)
-
-}
-function showCelsium(event) {
-   event.preventDefault();
-   let temperature = document.querySelector('.temperature');
-   temperature.innerHTML = celsiusTemperature;
-}
-
 function showTemperature(response) {
    console.log(response.data);
-   let temperatureEliment = document.querySelector('.temperature');
+   let temperatureEliment = document.querySelector('#temperature');
    temperatureEliment.innerHTML = Math.round(response.data.main.temp);
    let descriptionElement = document.querySelector('#description');
    descriptionElement.innerHTML = response.data.weather[0].description;
@@ -65,6 +64,12 @@ function getCurrentPosition(event) {
 
 }
 
+function firstPage() {
+   let city = "dnipro";
+   let urlApi = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=metric`;
+   axios.get(urlApi).then(showTemperature);
+}
+
 let dataElement = document.querySelector('#data');
 let currentTime = new Date();
 
@@ -73,10 +78,10 @@ let searchForm = document.querySelector('.search-form');
 searchForm.addEventListener('submit', search);
 
 
-let tempFahrenheit = document.querySelector('#tempFahrenheit');
-tempFahrenheit.addEventListener('click', tempConvert)
-let celsium = document.querySelector('#celsium-link');
-celsium.addEventListener('click', showCelsium);
+let fahrenhitlink = document.querySelector('#fahrenheit-link');
+fahrenhitlink.addEventListener('click', displayFahrenhitTemperature)
+let celsiumLink = document.querySelector('#celsium-link');
+celsiumLink.addEventListener('click', showCelsium);
 
 let button = document.querySelector('#butn-position');
 button.addEventListener('click', getCurrentPosition);
@@ -84,3 +89,5 @@ button.addEventListener('click', getCurrentPosition);
 let key = '6605fc03f7aea0369923c76b4eb46d07';
 
 let celsiusTemperature = null;
+
+firstPage();
