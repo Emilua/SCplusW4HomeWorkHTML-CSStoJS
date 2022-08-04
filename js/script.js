@@ -12,7 +12,7 @@ function formatDate(date) {
    return `${day} ${hours}:${minutes}`;
 }
 
-function search(event) {
+function displayFahrenhitTemperature(event) {
    event.preventDefault();
    celsiumLink.classList.remove('active');
    fahrenhitlink.classList.add('active');
