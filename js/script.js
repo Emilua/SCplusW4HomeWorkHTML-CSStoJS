@@ -70,6 +70,27 @@ function firstPage() {
    axios.get(urlApi).then(showTemperature);
 }
 
+function displayForecast() {
+   let forecastElement = document.querySelector('#forecast');
+   let forecastHTML = `<div class="row">`;
+   let days = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu"];
+   days.forEach(function (day) {
+      forecastHTML = forecastHTML + `<div class="col-2">
+   <div class="wether-forecast-day">${day}</div>
+   <img src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" alt="cloudy">
+   <div class="weather-farecast-temp">
+      <span class="weather-farecast-temp-max">32°</span>
+      <span class="weather-farecast-temp-min">19°</span>
+   </div>
+</div>`;
+
+   });
+
+
+   forecastHTML = forecastHTML + `</div>`;
+   forecastElement.innerHTML = forecastHTML;
+}
+
 let dataElement = document.querySelector('#data');
 let currentTime = new Date();
 
@@ -91,3 +112,4 @@ let key = '6605fc03f7aea0369923c76b4eb46d07';
 let celsiusTemperature = null;
 
 firstPage();
+displayForecast();
