@@ -55,6 +55,7 @@ function showTemperature(response) {
    cityElement.innerHTML = response.data.name;
    celsiusTemperature = Math.round(response.data.main.temp);
 
+
    getForecast(response.data.coord);
 
 }
@@ -79,20 +80,30 @@ function firstPage() {
    axios.get(urlApi).then(showTemperature);
 }
 
+function formatDay(timeStamp) {
+   let date = new Date(timeStamp * 1000);
+   let day = date.getDay();
+   let days = ["Sun", "Man", "Tue", "Wed", "Thu", "Fri", "Sat"]
+
+   return days[day];
+}
+
 function displayForecast(response) {
    console.log(response.data.daily);
    let forecastElement = document.querySelector('#forecast');
+   let forecast = response.data.daily;
    let forecastHTML = `<div class="row">`;
-   let days = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu"];
-   days.forEach(function (day) {
-      forecastHTML = forecastHTML + `<div class="col-2">
-   <div class="wether-forecast-day">${day}</div>
-   <img src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" alt="cloudy">
+   forecast.forEach(function (forecastDay, index) {
+      if (index < 6) {
+         forecastHTML = forecastHTML + `<div class="col-2">
+   <div class="wether-forecast-day">${formatDay(forecastDay.dt)}</div>
+   <img src="http://openweathermap.org/img/w/${forecastDay.weather[0].icon}.png" alt="weather icon">
    <div class="weather-farecast-temp">
-      <span class="weather-farecast-temp-max">32°</span>
-      <span class="weather-farecast-temp-min">19°</span>
+      <span class="weather-farecast-temp-max">${Math.round(forecastDay.temp.max)}</span>°</span>
+      <span class="weather-farecast-temp-min">${Math.round(forecastDay.temp.min)}°</span>
    </div>
 </div>`;
+      }
 
    });
 
