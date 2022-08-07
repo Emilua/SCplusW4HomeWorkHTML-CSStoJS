@@ -43,6 +43,7 @@ function getForecast(coordinates) {
 }
 
 function showTemperature(response) {
+   console.log(response.data.weather[0].icon);
    let temperatureEliment = document.querySelector('#temperature');
    temperatureEliment.innerHTML = Math.round(response.data.main.temp);
    let descriptionElement = document.querySelector('#description');
@@ -54,7 +55,11 @@ function showTemperature(response) {
    let cityElement = document.querySelector('#current-city');
    cityElement.innerHTML = response.data.name;
    celsiusTemperature = Math.round(response.data.main.temp);
-
+   let weatherIcon = document.querySelector("#weather-icon");
+   let iconCode = response.data.weather[0].icon;
+   let iconUrl = `https://openweathermap.org/img/w/${iconCode}.png`;
+   weatherIcon.innerHTML = `<img src="${iconUrl}" alt="cloudy"
+   class="weather-icon float-left" id="weather-icon">`;
 
    getForecast(response.data.coord);
 
@@ -89,7 +94,6 @@ function formatDay(timeStamp) {
 }
 
 function displayForecast(response) {
-   console.log(response.data.daily);
    let forecastElement = document.querySelector('#forecast');
    let forecast = response.data.daily;
    let forecastHTML = `<div class="row">`;
